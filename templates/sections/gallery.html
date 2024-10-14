@@ -1,0 +1,209 @@
+<div class="gallery-container">
+    <span>// Photos Gallery</span>
+    <h2>Our Recent Work</h2>
+    <div class="gallery">
+        <div class="image">
+            <img src="{{url_for('static', filename='images/work-1.jpg')}}">
+            <div class="gallery-overlay">
+                <div class="overlay-content">
+                    <h3>Infrastructure</h3>
+                    <p>Infrastructure Building</p>
+                </div>
+                <div class="overlay-plus">
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+            </div>
+        </div>
+        <div class="image">
+            <img src="{{url_for('static', filename='images/work-2.jpg')}}">
+            <div class="gallery-overlay">
+                <div class="overlay-content">
+                    <h3>Infrastructure</h3>
+                    <p>Infrastructure Building</p>
+                </div>
+                <div class="overlay-plus">
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+            </div>
+        </div>
+        <div class="image">
+            <img src="{{url_for('static', filename='images/work-3.jpg')}}">
+            <div class="gallery-overlay">
+                <div class="overlay-content">
+                    <h3>Infrastructure</h3>
+                    <p>Infrastructure Building</p>
+                </div>
+                <div class="overlay-plus">
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+            </div>
+        </div>
+        <div class="image">
+            <img src="{{url_for('static', filename='images/work-4.jpg')}}">
+            <div class="gallery-overlay">
+                <div class="overlay-content">
+                    <h3>Infrastructure</h3>
+                    <p>Infrastructure Building</p>
+                </div>
+                <div class="overlay-plus">
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+            </div>
+        </div>
+        <div class="image">
+            <img src="{{url_for('static', filename='images/work-5.jpg')}}">
+            <div class="gallery-overlay">
+                <div class="overlay-content">
+                    <h3>Infrastructure</h3>
+                    <p>Infrastructure Building</p>
+                </div>
+                <div class="overlay-plus">
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+            </div>
+        </div>
+        <div class="image">
+            <img src="{{url_for('static', filename='images/work-6.jpg')}}">
+            <div class="gallery-overlay">
+                <div class="overlay-content">
+                    <h3>Infrastructure</h3>
+                    <p>Infrastructure Building</p>
+                </div>
+                <div class="overlay-plus">
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="gallery-popup">
+        <span>&times;</span>
+        <img src="{{url_for('static', filename='images/work-1.jpg')}}">
+    </div>
+</div>
+<!--Gallery style-->
+<style>
+    .gallery-container {
+        background-color: var(--white-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 70px;
+    }
+    .gallery-container span {
+        color: var(--primary-color);
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 15px;
+    }
+    .gallery-container h2 {
+        font-weight: bold;
+        font-size: 45px;
+        margin-bottom: 70px;
+    }
+    .gallery-container .gallery {
+        max-width: 80vw;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+    }
+    .gallery-container .gallery .image {
+        width: 370px;
+        max-width: 410px;
+        height: 450px;
+        flex-grow: 1;
+        overflow: hidden;
+        position: relative;
+    }
+    .gallery-container .gallery .image img {
+        width: 100%;
+        height: 100%;
+        transition: .6s;
+    }
+    .gallery-container .gallery .image:hover img {
+        transform: scale(1.1);
+    }
+    .gallery-container .gallery .image:hover .gallery-overlay {
+        transform: translateY(-10%);
+        opacity: 1;
+    }
+    .gallery .gallery-overlay {
+        width: 90%;
+        position: absolute;
+        bottom: 0;
+        left: 5%;
+        background-color: var(--primary-color);
+        color: var(--white-color);
+        display: flex;
+        padding: 30px 40px;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 100;
+        transition: .6s;
+        border-radius: 8px;
+        opacity: 0;
+    }
+
+    .gallery .gallery-overlay .overlay-plus {
+        cursor: pointer;
+        background-color: var(--white-color);
+        width: 40px;
+        height: 40px;
+        border-radius: 2px;
+        color: var(--primary-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .gallery-popup {
+        display: none;
+        position: fixed;
+        background-color: rgba(0, 0, 0, .9);
+        width: 100%;
+        height: 100%;
+        z-index: 1000;
+        top: 0;
+        right: 0;
+        overflow: hidden;
+    }
+    .gallery-popup span {
+        position: absolute;
+        right: 30px;
+        top: 30px;
+        color: var(--white-color);
+        font-size: 30px;
+        cursor: pointer;
+    }
+    .gallery-popup img {
+        max-width: 560px;
+        width: 45vw;
+        max-height: 660px;
+        height: 550px;
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
+<script>
+    const close = document.querySelector(".gallery-popup span");
+    const photo = document.querySelector(".gallery-popup");
+    const images = document.querySelectorAll(".gallery .image");
+    const overlayImage = document.querySelector(".gallery-popup img");
+    const body = document.querySelector("body");
+    const closeGallery = () => {
+        photo.style.display = "none";
+        body.classList.remove('no-scroll');
+    }
+    close.addEventListener("click", closeGallery);
+    images.forEach(image=> {
+        image.querySelector(".overlay-plus").addEventListener("click", () => {
+            overlayImage.src = image.getElementsByTagName("img")[0].getAttribute("src");
+            photo.style.display = "inline";
+            body.classList.add('no-scroll');
+        });
+
+    });
+</script>

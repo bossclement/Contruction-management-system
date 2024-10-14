@@ -1,0 +1,171 @@
+<div class="achievement-container">
+    <div class="achievement-content">
+        <div class="columns">
+            <div class="left">
+                <span>// Achievement</span>
+                <h2>Our Achievement & Experience</h2>
+                <p>
+                    With a proven track record of successful projects, our expertise and dedication 
+                    to quality have earned us a strong reputation in the industry. From residential 
+                    to commercial builds, we deliver results that exceed expectations.
+                </p>
+                <a href="/about" class="all-btn">Discover More</a>
+            </div>
+            <div class="right">
+                <div class="counters">
+                    <div class="counter">
+                        <i class="fa-regular fa-building"></i>
+                        <div class="counter-content">
+                            <span data-counter="86">0</span>
+                            <span>Project Done</span>
+                        </div>
+                    </div>
+                    <div class="counter">
+                        <i class="fa-solid fa-trophy"></i>
+                        <div class="counter-content">
+                            <span data-counter="56">0</span>
+                            <span>National Award</span>
+                        </div>
+                    </div>
+                    <div class="counter">
+                        <i class="fa-solid fa-people-group"></i>
+                        <div class="counter-content">
+                            <span data-counter="100">0</span>
+                            <span>Team Member</span>
+                        </div>
+                    </div>
+                    <div class="counter">
+                        <i class="fa-regular fa-handshake"></i>
+                        <div class="counter-content">
+                            <span data-counter="140">0</span>
+                            <span>Client Happy</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .achievement-container {
+        background-image: url("{{ url_for('static', filename='images/achievement-bg.png') }}");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-color: var(--banner-bg-color);
+        color: var(--white-color);
+        padding: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .achievement-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        max-width: 1170px;
+        margin: 100px 0;
+    }
+    .achievement-container .achievement-content .columns{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10%;
+    }
+    .achievement-content .columns .left span {
+        color: var(--primary-color);
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 15px;
+    }
+    .achievement-content .columns .left h2 {
+        font-weight: bold;
+        font-size: 45px;
+    }
+    .achievement-content .columns .left p {
+        margin-bottom: 70px;
+        line-height: 30px;
+    }
+    .achievement-content .columns .left {
+        width: 40%;
+    }
+    .achievement-content .columns .right {
+        width: 60%;
+    }
+    .achievement-content .columns .right .counters {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 30px;
+    }
+    .achievement-content .columns .right .counters .counter {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        background-color: var(--white-color);
+        color: var(--black-color);
+        width: 100%;
+        padding: 30px 0;
+        border-radius: 8px;
+    }
+
+    .right .counters .counter i {
+        font-size: 60px;
+        color: var(--primary-color);
+    }
+    .right .counters .counter .counter-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    .right .counters .counter .counter-content span:first-child {
+        font-weight: 700;
+        font-size: 40px;
+        color: var(--black-color);
+    }
+    .right .counters .counter .counter-content span:last-child {
+        font-size: 17px;
+        color: var(--banner-bg-color);
+    }
+</style>
+<script>
+    const counters = document.querySelectorAll(".right .counters .counter .counter-content span:first-child");
+    const container = document.querySelector(".achievement-container");
+    let activated = false;
+
+    window.addEventListener("scroll", () => {
+        if (
+            pageYOffset > container.offsetTop - container.offsetHeight - 200
+            && activated === false
+        ) {
+            counters.forEach(counter => {
+                counter.innerText = 0;
+                let count = 0;
+                function updateCount() {
+                    const target = parseInt(counter.dataset.counter);
+                    if (count < target) {
+                        count++;
+                        counter.innerText = count;
+                        setTimeout(updateCount, 10);
+                    } else {
+                        counter.innerText = target
+                    }
+                }
+                updateCount();
+                activated = true;
+            });
+        } else if (
+            pageYOffset < container.offsetTop - container.offsetHeight - 1150 ||
+            pageYOffset === 0 && activated === true
+        ) {
+            counters.forEach(counter => {
+                counter.innerText = 0;
+            });
+            activated = false;
+        }
+    });
+</script>

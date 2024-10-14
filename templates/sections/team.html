@@ -1,0 +1,127 @@
+<div class="team-container">
+    <div class="team-content">
+        <span>// Our Expert</span>
+        <h2>Senior Team Member</h2>
+        <div class="members">
+            <div class="member">
+                <img src="{{url_for('static', filename='images/team-1.jpg')}}">
+                <h2>Zose Carpio</h2>
+                <p>Senior Worker</p>
+                <div class="socials">
+                    <a href="https://facebook.com"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://instagram.com"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://twitter.com"><i class="fa-brands fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="member">
+                <img src="{{url_for('static', filename='images/team-2.jpg')}}">
+                <h2>Mendas Adla</h2>
+                <p>Senior Worker</p>
+                <div class="socials">
+                    <a href="https://facebook.com"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://instagram.com"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://twitter.com"><i class="fa-brands fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="member">
+                <img src="{{url_for('static', filename='images/team-6.png')}}">
+                <h2>Clinexmex Pant</h2>
+                <p>Senior Worker</p>
+                <div class="socials">
+                    <a href="https://facebook.com"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://instagram.com"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://twitter.com"><i class="fa-brands fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="member">
+                <img src="{{url_for('static', filename='images/team-4.jpg')}}">
+                <h2>Jack Peterson</h2>
+                <p>Senior Worker</p>
+                <div class="socials">
+                    <a href="https://facebook.com"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://instagram.com"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://twitter.com"><i class="fa-brands fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .team-container {
+        width: 100%;
+        background-image: url("{{url_for('static', filename='images/team.png')}}");
+        background-color: var(--grey-color);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        padding: 100px 0;
+    }
+    .team-container .team-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .team-container .team-content span {
+        color: var(--primary-color);
+        font-size: 20px;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .team-container .team-content h2 {
+        font-weight: bold;
+        font-size: 50px;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .team-content .members {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+        width: 90%;
+    }
+    .team-content .members .member:hover {
+        color: var(--white-color);
+        background-color: var(--primary-color);
+    }
+    .team-content .members .member {
+        width: 250px;
+        height: 365px;
+        color: var(--black-color);
+        background-color: var(--white-color);
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: column;
+        transition: .3s;
+    }
+    .team-content .members .member img {
+        width: 100%;
+        height: 60%;
+    }
+    .team-content .members .member h2 {
+        margin: 20px 0;
+        font-size: 20px;
+    }
+    .team-content .members .member p {
+        margin-bottom: 15px;
+    }
+    .team-content .members .member .socials {
+        display: flex;
+        gap: 20px;
+    }
+    .team-content .members .member .socials i {
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        border-radius: 50%;
+        font-size: 14px;
+        background-color: var(--grey-color);
+        color: var(--black-color);
+        text-align: center;
+        cursor: pointer;
+    }
+</style>

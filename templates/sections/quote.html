@@ -1,0 +1,84 @@
+<div class="quote-container">
+    <div class="columns">
+        <div class="left"></div>
+        <div class="right">
+            <span>// Free Quote</span>
+            <h2>Get your free Consultation</h2>
+            <form method="post" action="/message" class="quote-form">
+                <div class="user-info">
+                    <input type="text" name="name" required placeholder="Name">
+                    <input type="email" name="email" required placeholder="Email">
+                </div>
+                <div class="message">
+                    <input type="text" name="subject" required placeholder="Subject">
+                    <input type="text" name="message" required placeholder="Message">
+                </div>
+                <button class="all-btn" type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+</div>
+<style>
+    .quote-container {
+        background-color: var(--banner-bg-color);
+        background-image: url("{{url_for('static', filename='images/quote-bg.png')}}");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+
+    }
+    .quote-container .columns {
+        display: flex;
+    }
+    .quote-container .columns .left {
+        background-image: url("{{url_for('static', filename='images/quote-left-bg.jpg')}}");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 45%;
+    }
+    .quote-container .columns .right {
+        background-color: transparent;
+        width: 500px;
+        margin: 150px 100px;
+    }
+    .quote-container .columns .right span {
+        color: var(--primary-color);
+        font-size: 20px;
+        font-weight: 700;
+        text-align: left;
+        margin-bottom: 20px;
+    }
+    .quote-container .columns .right h2 {
+        font-weight: bold;
+        font-size: 50px;
+        text-align: left;
+        margin-bottom: 30px;
+        color: var(--white-color);
+        margin-top: 15px;
+    }
+    .quote-form input {
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: var(--white-color);
+        background: var(--secondary-color);
+        border: 0px;
+        outline: none;
+        height: 57px;
+        border-radius: 0px;
+        padding: 15px 20px;
+        width: 100%;
+    }
+    .quote-form .user-info {
+        display: flex;
+        gap: 40px;
+        margin-bottom: 40px;
+    }
+    .quote-form .message {
+        display: flex;
+        gap: 40px;
+        flex-direction: column;
+        margin-bottom: 60px;
+    }
+</style>
