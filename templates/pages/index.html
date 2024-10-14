@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <title>Construction labor management system</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="banner">
+    <div class="banner-right"></div>
+    <div class="banner-content">
+        <span>// We are the best</span>
+        <h1>We Build<br>
+            everything<br>
+            you Need
+        </h1>
+        <a class="all-btn" href="/about">Discover More</a> 
+    </div>
+</div>
+{% endblock %}

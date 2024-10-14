@@ -1,0 +1,52 @@
+{% if not session.get('Id') %}
+<nav>
+    <ul>
+        <li><a href="/home">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+        {% if not session.get('user') %}
+            <li><a href="//auth.{{ config.SERVER_NAME }}">Login</a></li>
+        {% else %}
+            <li><a href="/dashboard">Dashboard</a></li>
+        {% endif %}
+    </ul>
+</nav>
+<style>
+    nav {
+        background-color: transparent;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 20px 30px;
+    }
+
+    nav ul li {
+        list-style: none;
+        display: inline-block;
+        padding: 10px 30px;
+        font-size: 17px;
+    }
+
+    nav ul li a {
+        text-decoration: none;
+        color: var(--black-color);
+    }
+
+    nav ul li a:hover {
+        color: var(--primary-color);
+    }
+
+    nav ul li:last-child a {
+        color: var(--black-color) !important;
+    }
+    nav ul li:last-child a:hover {
+        color: var(--white-color) !important;
+    }
+
+    nav ul li:last-child{
+        background-color: var(--primary-color);
+        border-radius: 5px;
+        margin-left: 80px;
+    }
+</style>
+{% endif %}

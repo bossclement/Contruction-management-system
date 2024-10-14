@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playwrite+MX:wght@100..400&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+body.no-scroll {
+    overflow: hidden;
+}
+
+:root {
+    --primary-color: #FA6943;
+    --banner-bg-color: #051235;
+    --white-color: #fff;
+    --black-color: #000;
+    --grey-color: #FAFAFB;
+    --grey-dark-color: rgba(255, 255, 255, 0.5);
+    --secondary-color: #1e2a4a;
+    --tertiary-color: #071437;
+}
+
+.all-btn {
+    padding: 20px 30px;
+    background-color: var(--primary-color);
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+    font-size: 15px;
+    border: 0;
+    outline: none;
+}
+
+.all-btn:hover {
+    color: #fff;
+}
+
+/* page header */
+.page-header .container h2 {
+    font-size: 48px;
+    line-height: 58px;
+    color: var(--white-color);
+    font-weight: 700;
+}
+
+.page-header .container ul {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+    margin-top: 20px;
+}
+.page-header .container ul li a {
+    text-decoration: none;
+    color: var(--white-color);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.page-header .container ul li:last-child {
+    color: var(--primary-color);
+    font-size: 18px;
+    font-weight: 600;
+    position: relative;
+}
+.page-header .container ul li:last-child::after {
+    content: '/';
+    color: var(--white-color);
+    font-size: 18px;
+    font-weight: 600;
+    position: absolute;
+    top: 0;
+    left: -20px;
+}
+/* end of page header */
