@@ -10,6 +10,14 @@ app.secret_key = 'JUIjdepoIOIjdfpowesopIHJpJdpjdoiHJdio#dk123'
 def home():
     return render_template('pages/index.html')
 
+@app.route('/about')
+def about():
+    return render_template('pages/about.html')
+
+@app.route('/contact')
+def contact():
+    return render_template('pages/contact.html')
+
 if __name__ == '__main__':
     app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=60)
     app.config['SESSION_COOKIE_DOMAIN'] = 'build.com'

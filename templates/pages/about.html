@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <title>About us</title>
+{% endblock %}
+
+{% block content %}
+    <div class="page-header">
+        <div class="container">
+            <h2>About Us</h2>
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li>About</li>
+            </ul>
+        </div>
+    </div>
+    <style>
+        .page-header {
+            height: 410px;
+            background-image: url("{{url_for('static', filename='images/page-header.png')}}");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            background-color: var(--banner-bg-color);
+            display: flex;
+            align-items: center;
+            padding: 0 100px;
+            color: var(--white-color);
+        }
+    </style>
+
+    {% include 'sections/about.html' %}
+    {% include 'sections/achievements.html' %}
+    {% include 'sections/gallery.html' %}
+    {% include 'sections/team.html' %}
+    {% include 'sections/footer.html' %}
+{% endblock %}
