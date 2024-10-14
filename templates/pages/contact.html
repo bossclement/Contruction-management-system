@@ -1,0 +1,259 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <title>Contact us</title>
+{% endblock %}
+
+{% block content %}
+    <div class="page-header">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li>Contact</li>
+            </ul>
+        </div>
+    </div>
+    <style>
+        .page-header {
+            height: 410px;
+            background-image: url("{{url_for('static', filename='images/page-header.png')}}");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            background-color: var(--banner-bg-color);
+            display: flex;
+            align-items: center;
+            padding: 0 100px;
+            color: var(--white-color);
+        }
+    </style>
+
+    <div class="contact-cards">
+        <div class="cards-container">
+            <div class="card">
+                <i class="fa-solid fa-phone"></i>
+                <div class="content">
+                    <h2>Call us</h2>
+                    <span>+(250) - 789452871<br>
+                        +(250) - 729452871</span>
+                </div>
+            </div>
+            <div class="card">
+                <i class="fa-regular fa-envelope"></i>
+                <div class="content">
+                    <h2>Drop Us An Email</h2>
+                    <span>customersupport@gmail.com<br>
+                        manager@construction.com</span>
+                </div>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-location-dot"></i>
+                <div class="content">
+                    <h2>Location</h2>
+                    <span>KK 563 st Rwanda Kigali Kicukiro</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-container">
+        <div class="content">
+            <div class="columns">
+                <div class="left">
+                    <span class="contact-title light">\\ Get In touch</span>
+                    <h2>We are always Ready for your solution</h2>
+                    <p>Mauris sed purus quis odio lacinia pellentesque id sodales nibh. Fusce sit amet turpis nulla. Vestibulum tristique sagittis arcu a auctor nulla site</p>
+                    <span class="contact-title dark">Follow Us :</span>
+                    <div class="socials">
+                        <a href="https://facebook.com"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://instagram.com"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://x.com"><i class="fa-brands fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="right">
+                    <form method="post" action="/message" class="contact-form">
+                        <h2>Get in Touch with us</h2>
+                        <input type="text" name="name" id="name" placeholder="Your Name" required>
+                        <input type="email" name="email" id="email" placeholder="Your Email" required>
+                        <input type="text" name="subject" id="subject" placeholder="Subject" required>
+                        <textarea name="message" id="msg" placeholder="Message" required></textarea>
+                        <button type="submit" class="all-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.4937356196792!2d30.10154817583157!3d-1.9559369367264479!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca6f9a9f85475%3A0x81d16dcc3c7b2f4b!2sAUCA%20Gishushu%20Campus!5e0!3m2!1sen!2srw!4v1722428558330!5m2!1sen!2srw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <style>
+        .form-container {
+            background-color: var(--white-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 150px;
+        }
+        .form-container .content {
+            max-width: 1170px;
+        }
+        .form-container .content .columns{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+        }
+        .form-container .content .columns .right,
+        .form-container .content .columns .left {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+        }
+        span.contact-title {
+            font-size: 20px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        span.contact-title.light {
+            color: var(--primary-color);
+        }
+        span.contact-title.dark {
+            color: var(--black-color);
+        }
+        .form-container .content .columns .left h2 {
+            font-weight: bold;
+            font-size: 50px;
+            text-align: center;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        .form-container .content .columns .left p {
+            font-size: 15px;
+            line-height: 30px;
+            margin-bottom: 30px;
+        }
+        .form-container .content .columns .left .socials {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+        .form-container .content .columns .left .socials a {
+            text-decoration: none;
+        }
+        .form-container .content .columns .left .socials i {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--grey-color);
+            font-size: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            color: var(--secondary-color);
+        }
+        form.contact-form {
+            flex-grow: 1;
+            width: 100%;
+            padding: 60px;
+            background-color: var(--grey-color);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 20px;
+            height: 700px;
+        }
+        form.contact-form h2 {
+            font-size: 30px;
+            font-weight: 600;
+            margin-bottom: 40px;
+        }
+        form.contact-form input {
+            width: 100%;
+            height: 60px;
+            border: 1px solid #ebebeb;
+            padding-left: 25px;
+            outline: none;
+            font-size: 15px;
+        }
+        form.contact-form textarea {
+            border: 1px solid #ebebeb;
+            padding: 20px;
+            width: 100%;
+            padding-left: 25px;
+            outline: none;
+            font-size: 15px;
+            resize: none;
+            height: auto;
+            margin-bottom: 30px;
+            flex-grow: 1;
+        }
+        .map iframe {
+            width: 100%;
+            height: 60vh;
+        }
+    </style>
+    <style>
+        .contact-cards {
+            background-color: var(--white-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .contact-cards .cards-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            padding: 150px 20px;
+        }
+        .contact-cards .cards-container .card {
+            width: 350px;
+            height: 170px;
+            background-color: var(--grey-color);
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            color: var(--black-color);
+            padding: 0 30px;
+        }
+        .contact-cards .cards-container .card:hover{
+            background-color: var(--primary-color);
+            transition: .1s ease-in-out;
+        }
+        .contact-cards .cards-container .card:hover *{
+            color: var(--white-color);
+        }
+        .contact-cards .cards-container .card i {
+            font-size: 50px;
+            color: var(--primary-color);
+            transition: .1s ease-in-out;
+        }
+        .contact-cards .cards-container .card .content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+        }
+        .contact-cards .cards-container .card .content h2 {
+            transition: 0.1s ease-in-out;
+            line-height: 50px;
+            font-weight: 600;
+        }
+        .contact-cards .cards-container .card .content span {
+            transition: 0.1s ease-in-out;
+            font-size: 15px;
+            line-height: 30px;
+        }
+    </style>
+
+    {% include 'sections/footer.html' %}
+{% endblock %}
