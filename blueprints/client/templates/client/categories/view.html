@@ -1,0 +1,104 @@
+<div class="view">
+    <div class="content">
+        <div class="header-content">
+            <h1 class="page-title"><a href="/apply"><i class="fa-solid fa-chevron-left"></i></a>Job Details</h1>
+            <a href="/apply/{{ job['job'].id }}" class="action table-btn">Apply This Job</a>
+        </div>
+        <div class="container">
+            <div class="details">
+                <div class="row">
+                    <div class="column">
+                        <h2 class="title">Start Date:<span>{{ job['start_date'] }}</span></h2>
+                        <h2 class="title">End Date:<span>{{ job['end_date'] }}</span></h2>
+                    </div>
+                    <div class="column">
+                        <h2 class="title">Hours Per Day:<span>{{ job['job'].hours_per_day }} {{ 'Hours' if job['job'].hours_per_day > 1 else 'Hour' }}</span></h2>
+                        <h2 class="title">Pay Per Hour:<span>{{ job['job'].pay_per_hour }} RWF</span></h2>
+                    </div>
+                    <div class="column">
+                        <h2 class="title">Duration:<span>{{ job['job'].duration_days }} {{ 'Days' if job['job'].duration_days > 1 else 'Day' }}</span></h2>
+                        <h2 class="title">Expected Total Income:<span>{{ job['income'] }} RWF</span></h2>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="description">
+                <h2 class="title">Title:<br><span>{{ job['job'].title }}</span></h2>
+                <h2 class="title">Description:<br><span>{{ job['job'].description }}</span></h2>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .view {
+        padding: 30px 35px;
+        display: flex;
+        flex-direction: column;
+    }
+    .view .content h1 {
+        color: var(--black-color);
+    }
+    .view .content .container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 64vh;
+        margin-top: 30px;
+        background-color: var(--grey-color);
+        overflow: auto;
+        padding: 30px;
+    }
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+    }
+    .page-title {
+        display: flex;
+        gap: 20px;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .page-title a {
+        font-size: 23px;
+        text-decoration: none;
+        color: var(--black-color);
+    }
+    .container .details {
+        margin-bottom: 30px;
+    }
+    .container .details .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .container .details .row .column {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-right: 30px;
+        margin-bottom: 15px;
+        flex-grow: 1;
+    }
+    .container .details .row .column .title {
+        font-size: 17px;
+        display: flex;
+        gap: 10px;
+    }
+    .container .details .row .column .title span {
+        font-size: 15px;
+        font-weight: 400;
+    }
+    .description {
+        margin-top: 45px;
+    }
+    .description .title {
+        font-size: 25px;
+        margin-bottom: 25px;
+    }
+    .description .title span,
+    .description .title span 
+    {
+        font-weight: 400;
+        font-size: 17px;
+    }
+</style>
