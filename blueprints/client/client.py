@@ -50,6 +50,47 @@ def jobs():
         jobs=jobs
     )
 
+@client.route('/payment/<int:job_id>', subdomain='dashboard')
+@login_required
+def payment_request(job_id):
+    username = session.get('user')
+    res = UserDao.get_user_jobs(username=username)
+    if not res['status']:
+        flash(res['msg'], 'failed' if not res['status'] else 'success')
+        return render_template(
+            'client/base.html',
+            category='jobs'
+        )
+
+    # find the job requested for payment
+    jobs = res['user_jobs']
+    job = None
+    for x in jobs:
+        if x['job'].id == job_id:
+            job = x
+            break
+    
+    # check if job is in approved status
+    if job and job['status'] == 'approved':
+        res = UserDao.update_job_status(
+            job_id=job['job'].id,
+            username=username,
+            status_value='requested'
+        )
+        if not res['status']:
+            flash(res['msg'], 'failed' if not res['status'] else 'success')
+            return render_template(
+                'client/base.html',
+                category='jobs',
+                jobs=jobs
+            )
+        else:
+            flash('Payment request successful', 'success')
+    else:
+        flash('Failed to update job status', 'failed')
+
+    return redirect(url_for('client.jobs'))
+
 
 @client.route('/logout', subdomain='dashboard')
 def logout():
