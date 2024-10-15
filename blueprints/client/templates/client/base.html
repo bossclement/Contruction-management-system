@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('client.static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+    <title>Dashboard</title>
+</head>
+<body>
+    <header>
+        <div class="header">
+            <div class="user-account">
+                <i class="fa-regular fa-circle-user">
+                    <ul class="user-options">
+                        <li><a href="//{{ config.SERVER_NAME }}">Home</a></li>
+                        <li><a href="/logout">Log Out</a></li>
+                    </ul>
+                </i>
+            </div>
+        </div>
+    </header>
+    <main>
+        {% include 'widgets/message.html' %}
+        <div class="container">
+            <div class="navigation">
+                <nav>
+                    <div class="nav-group">
+                        <span>Core</span>
+                        <ul>
+                            <li class="{{ 'active' if category == 'dashboard' else '' }}">
+                                <a href="/"><i class="fa-solid fa-gauge"></i>Dashboard</a>
+                            </li>
+                            <li class="{{ 'active' if category == 'apply' or category == 'view' else '' }}">
+                                <a href="/apply"><i class="fa-regular fa-bell"></i>Apply for job</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="nav-group">
+                        <span class="group-title">Other</span>
+                        <ul class="categories">
+                            <li class="{{ 'active' if category == 'jobs' else '' }}">
+                                <a href="/jobs"><i class="fa-solid fa-briefcase"></i>My Jobs</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="content-section">
+                {% if category == 'dashboard' %}
+                    {% include 'client/categories/dashboard.html' %}
+                {% elif category == 'apply' %}
+                    {% include 'client/categories/apply.html' %}
+                {% elif category == 'jobs' %}
+                    {% include 'client/categories/jobs.html' %}
+                {% elif category == 'view' %}
+                    {% include 'client/categories/view.html' %}
+                {% endif %}
+            </div>
+        </div>
+    </main>
+    <footer>
+    </footer>
+</body>
+</html>

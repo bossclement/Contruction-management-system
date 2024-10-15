@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playwrite+MX:wght@100..400&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+body.no-scroll {
+    overflow: hidden;
+}
+
+:root {
+    --primary-color: #FA6943;
+    --banner-bg-color: #051235;
+    --white-color: #fff;
+    --black-color: #000;
+    --grey-color: #FAFAFB;
+    --grey-dark-color: rgba(255, 255, 255, 0.5);
+    --secondary-color: #1e2a4a;
+    --tertiary-color: #071437;
+}
+
+.all-btn {
+    padding: 20px 30px;
+    background-color: var(--primary-color);
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+    font-size: 15px;
+    border: 0;
+    outline: none;
+}
+
+.all-btn:hover {
+    color: #fff;
+}
+
+main .container {
+    display: flex;
+    max-height: calc(100vh - 60px);
+}
+
+main .container .content-section {
+    flex-grow: 1;
+    overflow: auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+header {
+    width: 100%;
+    height: 60px;
+    background-color: var(--banner-bg-color);
+}
+
+header .header {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 30px;
+    position: relative;
+}
+
+header .header .user-account i {
+    color: var(--white-color);
+    font-size: 25px;
+    cursor: pointer;
+}
+
+header .header .user-account i:hover {
+    color: var(--primary-color);
+}
+
+header .header .user-account i:hover .user-options {
+    visibility: visible;
+}
+
+.user-options li a {
+    color: var(--white-color);
+    font-size: 17px;
+}
+
+.user-options li a:hover {
+    color: var(--primary-color);
+}
+
+.user-options li {
+    width: 80%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.user-options li:not(:last-child) {
+    border-bottom: 1px solid var(--grey-dark-color);
+}
+.user-options {
+    width: 150px;
+    position: absolute;
+    background-color: var(--banner-bg-color);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    right: 40px;
+    z-index: 100;
+    visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+main .container {
+    height: 93vh;
+}
+
+/* nav */
+
+.navigation {
+    background-color: var(--banner-bg-color);
+    min-width: 250px;
+    height: 100%;
+    color: var(--grey-dark-color);
+}
+
+.navigation .nav-group {
+    width: 100%;
+    padding: 20px;
+}
+.navigation .nav-group ul {
+    margin-top: 10px;
+}
+.navigation .nav-group ul li:hover {
+    padding-left: 5px;
+}
+.navigation .nav-group li {
+    margin: 10px;
+    transition: .5s;
+}
+.navigation .nav-group li a {
+    display: flex;
+    gap: 10px;
+    color: var(--grey-dark-color);
+    font-size: 16px;
+}
+
+.navigation .nav-group li a:hover {
+    color: var(--primary-color);
+}
+
+.navigation .nav-group li.active a {
+    color: var(--white-color) !important;
+}
+
+/* end nav */
+
+/* Table style */
+
+table.content-table {
+    border-collapse: collapse;
+    width: 100%;
+    align-self: self-start;
+    table-layout: fixed;
+}
+table.content-table thead tr {
+    text-align: left;
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+    font-weight: bold;
+}
+table.content-table th,
+table.content-table td {
+    padding: 12px 15px;
+}
+table.content-table tbody tr {
+    border-bottom: 1px solid var(--white-color);
+}
+table.content-table tbody tr:nth-of-type(even) {
+    background-color: var(--grey-dark-color);
+}
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+.action-btns {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    gap: 10px;
+}
+.table-btn {
+    padding: 5px 10px;
+    text-decoration: none;
+    color: var(--white-color);
+    border-radius: 5px;
+    cursor: pointer;
+}
+.table-btn.view {
+    background-color: var(--secondary-color);
+}
+.table-btn.action {
+    background-color: var(--primary-color);
+}
+.table-btn.red {
+    background-color: red;
+}
+tr td span.status {
+    padding: 2px 10px;
+    text-align: center;
+    border-radius: 5px;
+    color: var(--white-color);
+}
+tr td span.status.canceled {
+    background-color: red;
+}
+tr td span.status.completed {
+    background-color: green;
+}
+tr td span.status.pending {
+    background-color: rgb(255, 174, 0);
+}
+tr td span.status.approved {
+    background-color: blue;
+}
+tr td span.status.requested {
+    background-color: rgb(225, 0, 255);
+}
+/* end table */
