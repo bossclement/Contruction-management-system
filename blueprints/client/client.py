@@ -31,6 +31,25 @@ def apply_job(job_id):
     flash(res['msg'], 'failed' if not res['status'] else 'success')
     return redirect(url_for('client.apply'))
 
+@client.route('/jobs', subdomain='dashboard')
+@login_required
+@subdomain_check_point
+def jobs():
+    username = session.get('user')
+    res = UserDao.get_user_jobs(username=username)
+    if not res['status']:
+        flash(res['msg'], 'failed' if not res['status'] else 'success')
+        return render_template(
+            'client/base.html',
+            category='jobs'
+        )
+    jobs = res['user_jobs']
+    return render_template(
+        'client/base.html',
+        category='jobs',
+        jobs=jobs
+    )
+
 
 @client.route('/logout', subdomain='dashboard')
 def logout():
