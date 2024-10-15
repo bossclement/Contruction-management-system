@@ -112,6 +112,86 @@ def view(job_id):
         job=job
     )
 
+@client.route('/remove/<int:job_id>', subdomain='dashboard')
+@login_required
+def remove(job_id):
+    username = session.get('user')
+    res = UserDao.get_user_jobs(username=username)
+    if not res['status']:
+        flash(res['msg'], 'failed' if not res['status'] else 'success')
+        return render_template(
+            'client/base.html',
+            category='jobs'
+        )
+
+    # find the job requested to remove
+    jobs = res['user_jobs']
+    job = None
+    for x in jobs:
+        if x['job'].id == job_id:
+            job = x
+            break
+    
+    # check if job is in pending status
+    if job and job['status'] == 'pending':
+        res = UserDao.remove_job(
+            job_id=job_id,
+            username=username
+        )
+        if not res['status']:
+            flash(res['msg'], 'failed' if not res['status'] else 'success')
+            return render_template(
+                'client/base.html',
+                category='jobs',
+                jobs=jobs
+            )
+        else:
+            flash(res['msg'], 'success')
+    else:
+        flash('Failed to remove job', 'failed')
+
+    return redirect(url_for('client.jobs'))
+
+@client.route('/cancel/<int:job_id>', subdomain='dashboard')
+@login_required
+def cancel(job_id):
+    username = session.get('user')
+    res = UserDao.get_user_jobs(username=username)
+    if not res['status']:
+        flash(res['msg'], 'failed' if not res['status'] else 'success')
+        return render_template(
+            'client/base.html',
+            category='jobs'
+        )
+
+    # find the job requested to cancel
+    jobs = res['user_jobs']
+    job = None
+    for x in jobs:
+        if x['job'].id == job_id:
+            job = x
+            break
+    
+    # check if job is in requested status
+    if job and job['status'] == 'requested':
+        res = UserDao.update_job_status(
+            job_id=job['job'].id,
+            username=username,
+            status_value='canceled'
+        )
+        if not res['status']:
+            flash(res['msg'], 'failed' if not res['status'] else 'success')
+            return render_template(
+                'client/base.html',
+                category='jobs',
+                jobs=jobs
+            )
+        else:
+            flash('Job canceled successfully', 'success')
+    else:
+        flash('Failed to cancel job', 'failed')
+
+    return redirect(url_for('client.jobs'))
 
 @client.route('/logout', subdomain='dashboard')
 def logout():
