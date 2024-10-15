@@ -17,6 +17,12 @@ def home():
         flash(res['msg'], 'failed' if not res['status'] else 'success')
     return render_template('client/base.html', username=username, category='dashboard', info=res['info'])
 
+@client.route('/apply', subdomain='dashboard')
+@login_required
+def apply():
+    username = session.get('user')
+    return render_template('client/base.html', category='apply', jobs=UserDao.available_jobs(username)['jobs'])
+
 
 @client.route('/logout', subdomain='dashboard')
 def logout():
