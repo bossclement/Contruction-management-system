@@ -23,6 +23,14 @@ def apply():
     username = session.get('user')
     return render_template('client/base.html', category='apply', jobs=UserDao.available_jobs(username)['jobs'])
 
+@client.route('/apply/<int:job_id>', subdomain='dashboard')
+@login_required
+def apply_job(job_id):
+    username = session.get('user')
+    res = UserDao.add_job(username=username, job_id=job_id)
+    flash(res['msg'], 'failed' if not res['status'] else 'success')
+    return redirect(url_for('client.apply'))
+
 
 @client.route('/logout', subdomain='dashboard')
 def logout():
