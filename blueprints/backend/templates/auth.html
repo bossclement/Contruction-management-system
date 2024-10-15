@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('backend.static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+    <title>Authentication</title>
+</head>
+<body>
+    {% include 'widgets/message.html' %}
+    <div class="container">
+        <a href="http://{{ config.SERVER_NAME }}"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+        <div class="message"><span></span></div>
+        <div class="form">
+            <div class="buttons-container">
+                <div class="buttons">
+                    <span></span>
+                    <button id="login-btn" class="active">Login</button>
+                    <button id="reg-btn">Register</button>
+                </div>
+            </div>
+            <form id="login-form" method="post" action="/login">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <div class="remember">
+                    <input name="remember" type="checkbox">
+                    <span>Remember me</span>
+                </div>
+                <div class="submit-btn">
+                    <button type="submit">Log in</button>
+                </div>
+            </form>
+            <form id="reg-form" method="post" class="hidden" action="/register">
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <div class="submit-btn">
+                    <button type="submit">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <style>
+        .container {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("{{ url_for('backend.static', filename='images/bg.jpg') }}");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .container i {
+            font-size: 25px;
+            color: var(--white-color);
+            position: absolute;
+            top: 30px;
+            right: 30px;
+        }
+
+        .container .form {
+            width: 450px;
+            height: 550px;
+            background-color: #fff;
+            padding: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+        .form .buttons-container {
+            width: 70%;
+            height: 50px;
+            border-radius: 25px;
+            background-color: var(--grey-color);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 100px;
+        }
+        .form .buttons-container .buttons {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            position: relative;
+            z-index: 1;
+        }
+        .form .buttons-container .buttons span {
+            width: 50%;
+            height: 100%;
+            border-radius: 25px;
+            background-color: var(--primary-color);
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            transition: .6s ease-in-out;
+        }
+        .form .buttons-container .buttons button {
+            width: 50%;
+            height: 100%;
+            outline: none;
+            border: 0;
+            background-color: transparent;
+        }
+        form {
+            position: absolute;
+            top: 180px;
+            left: 25px;
+            width: 400px;
+            transition: .6s ease-in-out;
+        }
+        form input:not(input[type="checkbox"]) {
+            border: 0;
+            border-bottom: 2px solid var(--grey-color);
+            width: 100%;
+            padding: 15px 0;
+            outline: none;
+            margin-bottom: 20px;
+            font-size: 15px;
+            background-color: transparent;
+        }
+        form .remember{
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        button[type="submit"] {
+            padding: 15px 80px;
+            border: 0;
+            outline: none;
+            background-color: var(--primary-color);
+            border-radius: 25px;
+            cursor: pointer;
+        }
+        .submit-btn {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+        #reg-form.hidden {
+            left: 520px;
+        }
+        #login-form.hidden {
+            left: -520px;
+        }
+    </style>
+    <script>
+        const regBtn = document.querySelector("#reg-btn");
+        const loginBtn = document.querySelector("#login-btn");
+        const span = document.querySelector(".buttons span");
+        const loginForm = document.querySelector("#login-form");
+        const regForm = document.querySelector("#reg-form");
+        function activatebtn(event) {
+            let btns = document.querySelectorAll('.buttons button');
+            btns.forEach(item => item.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            if (event.currentTarget === regBtn) {
+                span.style.left = '50%';
+                loginForm.classList.add('hidden');
+                regForm.classList.remove('hidden');
+            } else {
+                span.style.left = '0';
+                loginForm.classList.remove('hidden');
+                regForm.classList.add('hidden');
+            }
+        }
+        regBtn.addEventListener('click', activatebtn);
+        loginBtn.addEventListener('click', activatebtn);
+    </script>
+</body>
+</html>

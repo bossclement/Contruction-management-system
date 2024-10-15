@@ -1,9 +1,11 @@
 from flask import Flask, request, redirect, render_template, session, url_for, flash
 from datetime import timedelta
+from blueprints.backend.backend import app as backend
 
 
 app = Flask(__name__)
 app.secret_key = 'JUIjdepoIOIjdfpowesopIHJpJdpjdoiHJdio#dk123'
+app.register_blueprint(backend)
 
 @app.route('/')
 @app.route('/home')

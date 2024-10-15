@@ -1,0 +1,64 @@
+{% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+        <ul class="messages">
+            {% for category, message in messages %}
+                <li class="{{ category }}">
+                    <span class="message">{{ message }}</span>
+                    <span>&times;</span>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+<style>
+    .messages {
+        list-style: none;
+        position: fixed;
+        top: 30px; right: 80px;
+        z-index: 100;
+    }
+    .messages li {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        align-items: center;
+        max-width: 500px;
+        padding: 20px 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    .messages li span:last-child {
+        font-size: 40px;
+        color: var(--white-color);
+        cursor: pointer;
+    }
+    .messages li span.message {
+        color: var(--black-color);
+    }
+    .messages li.failed {
+        background-color: rgb(255, 53, 53);
+    }
+    .messages li.success {
+        background-color: rgb(47, 255, 57);
+    }
+</style>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const messageBox = document.querySelector(".messages");
+        const messages = messageBox.querySelectorAll('li');
+
+        messages.forEach(message => {
+            let close = message.querySelector('span:last-child');
+            close.addEventListener('click', () => {
+                message.remove();
+            });
+        });
+
+        setTimeout(() => {
+            const updatedMessages = messageBox.querySelectorAll('li');
+            updatedMessages.forEach(message => {
+                message.remove();
+            });
+        }, 5000);
+    });
+</script>

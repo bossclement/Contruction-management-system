@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playwrite+MX:wght@100..400&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+:root {
+    --primary-color: #FA6943;
+    --banner-bg-color: #051235;
+    --white-color: #fff;
+    --black-color: #000;
+    --grey-color: #FAFAFB;
+    --grey-dark-color: rgba(255, 255, 255, 0.5);
+    --secondary-color: #1e2a4a;
+    --tertiary-color: #071437;
+}
