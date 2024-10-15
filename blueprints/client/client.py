@@ -91,6 +91,27 @@ def payment_request(job_id):
 
     return redirect(url_for('client.jobs'))
 
+@client.route('/view/<int:job_id>', subdomain='dashboard')
+@login_required
+def view(job_id):
+    username = session.get('user')
+    res = JobDao.get(job_id=job_id)
+    if not res['status']:
+        flash(res['msg'], 'failed' if not res['status'] else 'success')
+        return redirect(url_for('client.apply'))
+    x = res['job']
+    job = {
+        'job': x,
+        'start_date': date.today(),
+        'end_date': date.today() + timedelta(days=x.duration_days),
+        'income': x.duration_days * (x.hours_per_day * x.pay_per_hour)
+    }
+    return render_template(
+        'client/base.html',
+        category='view',
+        job=job
+    )
+
 
 @client.route('/logout', subdomain='dashboard')
 def logout():
