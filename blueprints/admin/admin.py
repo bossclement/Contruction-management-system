@@ -197,6 +197,23 @@ def payments():
         )
     flash(action_res['msg'], 'failed' if not action_res['status'] else 'success')
     return redirect(url_for('admin.payments'))
+
+@admin.route('/newsletters', subdomain='admin')
+@login_required
+def newsletters():
+    if request.args:
+        action = request.args.get('action', None)
+        email = request.args.get('email', None)
+        if action and email and action == 'delete':
+            action_res = NewsLetterDao.delete(email=email)
+            flash(action_res['msg'], 'failed' if not action_res['status'] else 'success')
+        return redirect(url_for('admin.newsletters'))
+    res = NewsLetterDao.all()
+    return render_template(
+        'admin/base.html',
+        category='newsletters',
+        newsletters=res['newsletters']
+    )
     
 @admin.route('/logout', subdomain='admin')
 def logout():
