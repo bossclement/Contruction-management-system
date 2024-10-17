@@ -1,0 +1,64 @@
+<div class="payments">
+    <div class="content">
+        <h1>Payment Requests</h1>
+        <div class="container">
+            {% if payments %}
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Job Title</th>
+                            <th>User</th>
+                            <th>Application Date</th>
+                            <th>Completion Date</th>
+                            <th>Amount</th>
+                            <th style="width: 21%;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for payment in payments %}
+                            <tr>
+                                <td class="ellipsis">{{ payment['job'].title }}</td>
+                                <td class="ellipsis">{{ payment['user'].username }}</td>
+                                <td class="ellipsis">{{ payment['application_date'] }}</td>
+                                <td class="ellipsis">{{ payment['completion_date'] }}</td>
+                                <td class="ellipsis">{{ payment['amount'] }}</td>
+                                <td>
+                                    <div class="action-btns">
+                                        <a href="/payments?action=approve&id={{ payment['job'].id }}&username={{ payment['user'].username }}" class="action table-btn">Approve</a>
+                                        <a href="/payments?action=decline&id={{ payment['job'].id }}&username={{ payment['user'].username }}" class="red table-btn">Decline</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <h2>No payment requests available</h2>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<style>
+    .payments {
+        padding: 30px 35px;
+        display: flex;
+        flex-direction: column;
+    }
+    .payments .content h1 {
+        color: var(--black-color);
+    }
+    .payments .content .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 58vh;
+        margin-top: 30px;
+        background-color: var(--grey-color);
+    }
+    .payments .content .container h2 {
+        color: var(--secondary-color);
+    }
+    
+</style>
