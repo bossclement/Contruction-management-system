@@ -95,6 +95,36 @@ def new():
     res = JobDao.create(job=job)
     flash(res['msg'], 'failed' if not res['status'] else 'success')
     return redirect(url_for('admin.jobs'))
+
+@admin.route('/edit/<int:job_id>', subdomain='admin', methods=["GET", "POST"])
+@login_required
+def edit(job_id):
+    if request.method == "GET":
+        res = JobDao.get(job_id=job_id)
+        if not res['status']:
+            flash(res['msg'], 'failed')
+            return redirect(url_for('admin.jobs'))
+        return render_template(
+            'admin/base.html',
+            category='post',
+            job=res['job']
+        )
+    else:
+        title = request.form['title']
+        description = request.form['description']
+        duration = request.form['duration']
+        pay = request.form['pay']
+        hours = request.form['hours']
+        res = JobDao.update(
+            title=title,
+            description=description,
+            duration_days=duration,
+            hours_per_day=hours,
+            job_id=job_id,
+            pay_per_hour=pay,
+        )
+        flash(res['msg'], 'failed' if not res['status'] else 'success')
+        return redirect(url_for('admin.jobs'))
     
 @admin.route('/logout', subdomain='admin')
 def logout():
