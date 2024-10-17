@@ -1,0 +1,141 @@
+<div class="post">
+    <div class="content">
+        <h1 class="page-title"><a href="/jobs"><i class="fa-solid fa-chevron-left"></i></a>{{ "Edit Job" if job else "Post New Job"}}</h1>
+        <div class="container">
+            <form action="" method="post">
+                <label for="title">Job Title</label>
+                <input type="text" name="title" class="full-width input-field" value="{{ job.title if job else ''}}" required>
+                <label for="description">Description</label>
+                <textarea name="description" id="description" class="full-width" required>{{ job.description if job else ''}}</textarea>
+                <div class="row">
+                    <div class="column">
+                        <label for="duration">Duration Days</label>
+                        <input type="number" name="duration" id="duration" class="input-field" oninput="this.value = this.value.replace(/[^0-9]/g, '')" value="{{ job.duration_days if job else ''}}" required>
+                    </div>
+                    <div class="column">
+                        <label for="pay">Pay Per Hour</label>
+                        <input type="number" name="pay" id="pay" class="input-field" oninput="this.value = this.value.replace(/[^0-9]/g, '')" value="{{ job.pay_per_hour if job else ''}}" required>
+                    </div>
+                    <div class="column">
+                        <label for="hours">Working Hours Per Day</label>
+                        <input type="number" name="hours" id="hours" class="input-field" oninput="this.value = this.value.replace(/[^0-9]/g, '')" value="{{ job.hours_per_day if job else ''}}" required>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button type="submit">{{ "Save" if job else "Post"}}</button>
+                    <a href="/jobs">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<style>
+    .post {
+        padding: 30px 35px;
+        overflow: auto;
+        max-height: 100%;
+    }
+    .post .content {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: column;
+        gap: 30px;
+    }
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+    }
+    .page-title {
+        display: flex;
+        gap: 20px;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .page-title a {
+        font-size: 23px;
+        text-decoration: none;
+        color: var(--black-color);
+    }
+    .post .content h1 {
+        color: var(--black-color);
+    }
+    .post .content .container {
+        width: 100%;
+        height: 90%;
+    }
+    form {
+        padding: 30px;
+        border: 1px solid var(--secondary-color);
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        width: 700px;
+    }
+    form label {
+        font-size: 17px;
+        font-weight: 500;
+        margin-bottom: 10px;
+    }
+    form .row {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+    }
+    form .row .column {
+        display: flex;
+        flex-direction: column;
+        min-width: 30%;
+        flex-grow: 1;
+    }
+    .full-width {
+        width: 100%;
+    }
+    .input-field {
+        padding: 10px 5px;
+        outline: none;
+        margin-bottom: 20px;
+        font-size: 15px;
+    }
+    #description {
+        margin-bottom: 20px;
+        width: 100%;
+        height: 200px;
+        padding: 25px 20px;
+        outline: none;
+        font-size: 15px;
+        resize: none;
+    }
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    .buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: flex-end;
+    }
+    .buttons button,
+    .buttons a
+    {
+        width: 100px;
+        padding: 12px 5px;
+        margin-top: 40px;
+        outline: none;
+        border: none;
+        border-radius: 3px;
+        text-align: center;
+        text-decoration: none;
+        color: var(--white-color);
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .buttons a {
+        background-color: red;
+    }
+    button[type="submit"] {
+        background-color: green;
+    }
+</style>

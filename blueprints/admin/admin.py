@@ -3,6 +3,7 @@ from blueprints.backend.database.dao.userDao import UserDao
 from blueprints.backend.database.dao.jobDao import JobDao
 from blueprints.backend.database.dao.newsletterDao import NewsLetterDao
 from blueprints.backend.database.dao.messageDao import MessageDao
+from blueprints.backend.database.models.job import Job
 from functools import wraps
 from blueprints.utils.backend import login_required, subdomain_check_point
 
@@ -70,6 +71,30 @@ def jobs():
         category='jobs',
         jobs=jobs
     )
+
+@admin.route('/new', subdomain='admin', methods=["GET", "POST"])
+@login_required
+def new():
+    if request.method == "GET":
+        return render_template(
+            'admin/base.html',
+            category='post'
+        )
+    title = request.form['title']
+    description = request.form['description']
+    duration = request.form['duration']
+    pay = request.form['pay']
+    hours = request.form['hours']
+    job = Job(
+        description=description,
+        duration_days=duration,
+        hours_per_day=hours,
+        pay_per_hour=pay,
+        title=title
+    )
+    res = JobDao.create(job=job)
+    flash(res['msg'], 'failed' if not res['status'] else 'success')
+    return redirect(url_for('admin.jobs'))
     
 @admin.route('/logout', subdomain='admin')
 def logout():
