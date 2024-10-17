@@ -1,0 +1,77 @@
+<div class="jobs">
+    <div class="content">
+        <div class="header-content">
+            <h1 class="page-title">List of jobs</h1>
+            <a href="/new" class="action table-btn">Create New Job</a>
+        </div>
+        <div class="container">
+            {% if jobs %}
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Duration</th>
+                            <th>Pay / Hour</th>
+                            <th>Hours / Day</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for job in jobs | reverse %}
+                            <tr>
+                                <td class="ellipsis">{{job.title}}</td>
+                                <td class="ellipsis">{{job.duration_days}} {{'Days' if job.duration_days > 1 else 'Day'}}</td>
+                                <td class="ellipsis">{{job.pay_per_hour}} <span style="font-size: 12px;">RWF</span></td>
+                                <td class="ellipsis">{{job.hours_per_day}}</td>
+                                <td>
+                                    <div class="action-btns">
+                                        <a href="/edit/{{job.id}}" class="view table-btn">Edit</a>
+                                        <a href="/delete/{{job.id}}" class="red table-btn">Delete</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <h2>No jobs available</h2>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<style>
+    .jobs {
+        padding: 30px 35px;
+        display: flex;
+        flex-direction: column;
+    }
+    .jobs .content h1 {
+        color: var(--black-color);
+    }
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+    }
+    .page-title {
+        display: flex;
+        gap: 20px;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .jobs .content .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 58vh;
+        margin-top: 30px;
+        background-color: var(--grey-color);
+        overflow: auto;
+    }
+    .jobs .content .container h2 {
+        color: var(--secondary-color);
+    }
+    
+</style>

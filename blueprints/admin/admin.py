@@ -51,6 +51,25 @@ def admin_dashboard_info() -> dict:
 def home():
     username = session.get('user')
     return render_template('admin/base.html', username=username, category='dashboard', info=admin_dashboard_info())
+
+@admin.route('/jobs', subdomain='admin')
+@login_required
+@subdomain_check_point
+def jobs():
+    username = session.get('user')
+    res = JobDao.all()
+    if not res['status']:
+        flash(res['msg'], 'failed')
+        return render_template(
+            'admin/base.html',
+            category='jobs'
+        )
+    jobs = res['jobs']
+    return render_template(
+        'admin/base.html',
+        category='jobs',
+        jobs=jobs
+    )
     
 @admin.route('/logout', subdomain='admin')
 def logout():
