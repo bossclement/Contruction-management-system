@@ -1,5 +1,6 @@
 from flask import Flask, Blueprint, render_template, redirect, request, url_for, flash, get_flashed_messages, session
 from blueprints.backend.database.dao.userDao import UserDao
+from blueprints.backend.database.dao.userDao import JobDao
 from blueprints.backend.database.models.user import User
 from blueprints.utils.backend import login_required, subdomain_check_point
 from datetime import date, timedelta
@@ -192,6 +193,7 @@ def cancel(job_id):
         flash('Failed to cancel job', 'failed')
 
     return redirect(url_for('client.jobs'))
+
 
 @client.route('/logout', subdomain='dashboard')
 def logout():
