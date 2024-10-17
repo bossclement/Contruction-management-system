@@ -2,12 +2,14 @@ from flask import Flask, request, redirect, render_template, session, url_for, f
 from datetime import timedelta
 from blueprints.backend.backend import app as backend
 from blueprints.client.client import client
+from blueprints.admin.admin import admin
 
 
 app = Flask(__name__)
 app.secret_key = 'JUIjdepoIOIjdfpowesopIHJpJdpjdoiHJdio#dk123'
 app.register_blueprint(backend)
 app.register_blueprint(client)
+app.register_blueprint(admin)
 
 @app.route('/')
 @app.route('/home')

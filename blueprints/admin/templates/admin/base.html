@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('client.static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+    <title>Dashboard</title>
+</head>
+<body>
+    <header>
+        <div class="header">
+            <div class="user-account">
+                <i class="fa-regular fa-circle-user">
+                    <ul class="user-options">
+                        <li><a href="//{{ config.SERVER_NAME }}">Home</a></li>
+                        <li><a href="/logout">Log Out</a></li>
+                    </ul>
+                </i>
+            </div>
+        </div>
+    </header>
+    <main>
+        {% include 'widgets/message.html' %}
+        <div class="container">
+            <div class="navigation">
+                <nav>
+                    <div class="nav-group">
+                        <span>Core</span>
+                        <ul>
+                            <li class="{{ 'active' if category == 'dashboard' else '' }}">
+                                <a href="/"><i class="fa-solid fa-gauge"></i>Dashboard</a>
+                            </li>
+                            <li class="{{ 'active' if category == 'post' or category == 'jobs' else '' }}">
+                                <a href="/jobs"><i class="fa-regular fa-bell"></i>Jobs</a>
+                            </li>
+                            <li class="{{ 'active' if category == 'requests' else '' }}">
+                                <a href="/requests"><i class="fa-regular fa-bookmark"></i>Job Applications</a>
+                            </li>
+                            <li class="{{ 'active' if category == 'payments' else '' }}">
+                                <a href="/payments"><i class="fa-solid fa-comment-dollar"></i>Payment Requests</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="nav-group">
+                        <span class="group-title">Contact</span>
+                        <ul class="categories">
+                            <li class="{{ 'active' if category == 'newsletters' else '' }}">
+                                <a href="/newsletters"><i class="fa-regular fa-envelope"></i>News letters</a>
+                            </li>
+                            <li class="{{ 'active' if category == 'messages' or category == 'view' else '' }}">
+                                <a href="/messages"><i class="fa-regular fa-comments"></i>Messages</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="nav-group">
+                        <span class="group-title">User Management</span>
+                        <ul class="categories">
+                            <li class="{{ 'active' if category == 'users' else '' }}">
+                                <a href="/users"><i class="fa-regular fa-circle-user"></i>Users</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="content-section">
+                {% if category == 'dashboard' %}
+                    {% include 'admin/categories/dashboard.html' %}
+                {% elif category == 'jobs' %}
+                    {% include 'admin/categories/jobs.html' %}
+                {% elif category == 'post' %}
+                    {% include 'admin/categories/post.html' %}
+                {% elif category == 'requests' %}
+                    {% include 'admin/categories/requests.html' %}
+                {% elif category == 'payments' %}
+                    {% include 'admin/categories/payments.html' %}
+                {% elif category == 'newsletters' %}
+                    {% include 'admin/categories/newsletters.html' %}
+                {% elif category == 'messages' %}
+                    {% include 'admin/categories/message.html' %}
+                {% elif category == 'view' %}
+                    {% include 'admin/categories/view.html' %}
+                {% elif category == 'users' %}
+                    {% include 'admin/categories/users.html' %}
+                {% endif %}
+            </div>
+        </div>
+    </main>
+    <footer>
+    </footer>
+</body>
+</html>

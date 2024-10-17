@@ -1,0 +1,79 @@
+<div class="dashboard">
+    <div class="content">
+        <h1>Welcome back, {{username}}</h1>
+        <div class="cards-container">
+            <span>Job Information</span>
+            <div class="cards">
+                <div class="card">
+                    <span>Total jobs</span>
+                    <span>{{ info['total_jobs'] }}</span>
+                </div>
+                <div class="card">
+                    <span>Total employees</span>
+                    <span>{{ info['total_workers'] }}</span>
+                </div>
+                <div class="card">
+                    <span>Job applications</span>
+                    <span>{{ info['job_applications'] }}</span>
+                </div>
+                <div class="card">
+                    <span>Payment requests</span>
+                    <span>{{ info['payment_requests'] }}</span>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="cards-container">
+            <span>Contact</span>
+            <div class="cards">
+                <div class="card">
+                    <span>New messages</span>
+                    <span>{{ info['new_messages'] }}</span>
+                </div>
+                <div class="card">
+                    <span>News Letters</span>
+                    <span>{{ info['newsletters'] }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .dashboard {
+        padding: 60px 35px;
+    }
+    .dashboard .content h1 {
+        color: var(--black-color);
+    }
+    .dashboard .content .cards-container {
+        margin: 40px auto;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .dashboard .content .cards-container > span {
+        font-size: 18px;
+        font-weight: bold;
+    }
+    .dashboard .content .cards-container .cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+    }
+    .dashboard .content .cards-container .cards .card {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 20px;
+        min-width: 300px;
+        background-color: var(--grey-color);
+    }
+    .dashboard .content .cards-container .cards .card span:nth-child(1) {
+        font-size: 17px;
+        font-weight: 500;
+    }
+    .dashboard .content .cards-container .cards .card span:nth-child(2) {
+        font-size: 20px;
+        font-weight: bold;
+    }
+</style>
