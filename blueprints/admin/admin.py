@@ -168,6 +168,35 @@ def decline():
     )
     flash('Job decline successfully', 'failed' if not res['status'] else 'success')
     return redirect(url_for('admin.requests'))
+
+@admin.route('/payments', subdomain='admin')
+@login_required
+def payments():
+    if not request.args:
+        res = JobDao.all_payments()
+        return render_template(
+            'admin/base.html',
+            category='payments',
+            payments=res['payments']
+        )
+    action = request.args.get('action', type=str)
+    username = request.args.get('username', type=str)
+    job_id = request.args.get('id', type=int)
+    action_res = None
+    if action == 'decline':
+        action_res = UserDao.update_job_status(
+            job_id=job_id,
+            status_value='canceled',
+            username=username
+        )
+    else:
+        action_res = UserDao.update_job_status(
+            job_id=job_id,
+            status_value='completed',
+            username=username
+        )
+    flash(action_res['msg'], 'failed' if not action_res['status'] else 'success')
+    return redirect(url_for('admin.payments'))
     
 @admin.route('/logout', subdomain='admin')
 def logout():
