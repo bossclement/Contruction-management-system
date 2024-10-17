@@ -126,6 +126,13 @@ def edit(job_id):
         flash(res['msg'], 'failed' if not res['status'] else 'success')
         return redirect(url_for('admin.jobs'))
     
+@admin.route('/delete/<int:job_id>', subdomain='admin')
+@login_required
+def delete(job_id):
+    res = JobDao.delete(job_id=job_id)
+    flash(res['msg'], 'failed' if not res['status'] else 'success')
+    return redirect(url_for('admin.jobs'))
+    
 @admin.route('/logout', subdomain='admin')
 def logout():
     session.clear()
