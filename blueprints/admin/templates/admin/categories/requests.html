@@ -1,0 +1,61 @@
+<div class="requests">
+    <div class="content">
+        <h1>List of job applications</h1>
+        <div class="container">
+            {% if requests %}
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Job Title</th>
+                            <th>User</th>
+                            <th>Application Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for request in requests %}
+                            <tr>
+                                <td class="ellipsis">{{ request['job'].title }}</td>
+                                <td class="ellipsis">{{ request['user'].username }}</td>
+                                <td class="ellipsis">{{ request['date'] }}</td>
+                                <td>
+                                    <div class="action-btns">
+                                        <a href="/approve?id={{ request['job'].id }}&username={{ request['user'].username }}" class="action table-btn">Approve</a>
+                                        <a href="/decline?id={{ request['job'].id }}&username={{ request['user'].username }}" class="red table-btn">Decline</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <h2>No applications available</h2>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<style>
+    .requests {
+        padding: 30px 35px;
+        display: flex;
+        flex-direction: column;
+    }
+    .requests .content h1 {
+        color: var(--black-color);
+    }
+    .requests .content .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 58vh;
+        margin-top: 30px;
+        background-color: var(--grey-color);
+        overflow: auto;
+    }
+    .requests .content .container h2 {
+        color: var(--secondary-color);
+    }
+    
+</style>
