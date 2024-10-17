@@ -142,6 +142,19 @@ def requests():
         category='requests',
         requests=res['requests']
     )
+
+@admin.route('/approve', subdomain='admin')
+@login_required
+def approve():
+    username = request.args.get('username', type=str)
+    job_id = request.args.get('id', type=int)
+    res = UserDao.update_job_status(
+        job_id=job_id,
+        status_value='approved',
+        username=username
+    )
+    flash('Job approved successfully', 'failed' if not res['status'] else 'success')
+    return redirect(url_for('admin.requests'))
     
 @admin.route('/logout', subdomain='admin')
 def logout():
