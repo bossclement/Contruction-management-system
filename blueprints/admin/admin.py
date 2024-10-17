@@ -214,6 +214,34 @@ def newsletters():
         category='newsletters',
         newsletters=res['newsletters']
     )
+
+@admin.route('/messages', subdomain='admin')
+@login_required
+def messages():
+    if request.args:
+        action = request.args.get('action', None)
+        id = request.args.get('id', None)
+        if action and id:
+            if action == 'delete':
+                action_res = MessageDao.delete(id=id)
+                flash(action_res['msg'], 'failed' if not action_res['status'] else 'success')
+            elif action == 'view':
+                message_res = MessageDao.get(id=id)
+                if not message_res['status']:
+                    flash(message_res['msg'], 'failed')
+                else:
+                    return render_template(
+                        'admin/base.html',
+                        category='view',
+                        message=message_res['message']
+                    )
+        return redirect(url_for('admin.messages'))
+    res = MessageDao.all()
+    return render_template(
+        'admin/base.html',
+        category='messages',
+        messages=res['messages']
+    )
     
 @admin.route('/logout', subdomain='admin')
 def logout():

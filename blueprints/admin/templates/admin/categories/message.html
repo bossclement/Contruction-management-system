@@ -1,0 +1,65 @@
+<div class="msgs">
+    <div class="content">
+        <h1>Messages</h1>
+        <div class="container">
+            {% if messages %}
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Subject</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for message in messages %}
+                            <tr>
+                                <td class="ellipsis">{{ message.subject }}</td>
+                                <td class="ellipsis">{{ message.name }}</td>
+                                <td class="ellipsis">{{ message.email }}</td>
+                                <td class="ellipsis">{{ message.date.strftime("%Y - %m - %d").replace(' 0', ' ') }}</td>
+                                <td class="ellipsis"><span class="status {{ 'canceled' if message.status == 'unread' else 'completed' }}">{{ message.status }}</span></td>
+                                <td>
+                                    <div class="action-btns">
+                                        <a href="/messages?action=view&id={{ message.id }}" class="action table-btn">View</a>
+                                        <a href="/messages?action=delete&id={{ message.id }}" class="red table-btn">Delete</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <h2>No messages available</h2>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<style>
+    .msgs {
+        padding: 30px 35px;
+        display: flex;
+        flex-direction: column;
+    }
+    .msgs .content h1 {
+        color: var(--black-color);
+    }
+    .msgs .content .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 58vh;
+        margin-top: 30px;
+        background-color: var(--grey-color);
+        overflow: auto;
+    }
+    .msgs .content .container h2 {
+        color: var(--secondary-color);
+    }
+    
+</style>
