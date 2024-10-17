@@ -1,0 +1,88 @@
+<div class="view">
+    <div class="content">
+        <div class="header-content">
+            <h1 class="page-title"><a href="/messages"><i class="fa-solid fa-chevron-left"></i></a>Message Details</h1>
+            <a href="mailto:{{ message.email }}" class="action table-btn">Reply</a>
+        </div>
+        <div class="container">
+            <div class="details">
+                <div class="row">
+                    <h2 class="title">Date:<span>{{ message.date.strftime("%Y - %m - %d").replace(' 0', ' ') }}</span></h2>
+                    <h2 class="title">Email:<span>{{ message.email }}</span></h2>
+                    <h2 class="title">Sender:<span>{{ message.name }}</span></h2>
+                </div>
+            </div>
+            <hr>
+            <div class="description">
+                <h2 class="title">Subject:<br><span>{{ message.subject }}</span></h2>
+                <h2 class="title">Message:<br><span>{{ message.message }}</span></h2>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .view {
+        padding: 30px 35px;
+        display: flex;
+        flex-direction: column;
+    }
+    .view .content h1 {
+        color: var(--black-color);
+    }
+    .view .content .container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 73vh;
+        margin-top: 30px;
+        background-color: var(--grey-color);
+        overflow: auto;
+        padding: 30px;
+    }
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+    }
+    .page-title {
+        display: flex;
+        gap: 20px;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .page-title a {
+        font-size: 23px;
+        text-decoration: none;
+        color: var(--black-color);
+    }
+    .container .details {
+        margin-bottom: 30px;
+    }
+    .container .details .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 60px;
+    }
+    .container .details .row .title {
+        font-size: 17px;
+        display: flex;
+        gap: 10px;
+    }
+    .container .details .row .title span {
+        font-size: 15px;
+        font-weight: 400;
+    }
+    .description {
+        margin-top: 45px;
+    }
+    .description .title {
+        font-size: 25px;
+        margin-bottom: 25px;
+    }
+    .description .title span,
+    .description .title span 
+    {
+        font-weight: 400;
+        font-size: 17px;
+    }
+</style>
