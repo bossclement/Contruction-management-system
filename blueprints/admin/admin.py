@@ -155,6 +155,19 @@ def approve():
     )
     flash('Job approved successfully', 'failed' if not res['status'] else 'success')
     return redirect(url_for('admin.requests'))
+
+@admin.route('/decline', subdomain='admin')
+@login_required
+def decline():
+    username = request.args.get('username', type=str)
+    job_id = request.args.get('id', type=int)
+    res = UserDao.update_job_status(
+        job_id=job_id,
+        status_value='canceled',
+        username=username
+    )
+    flash('Job decline successfully', 'failed' if not res['status'] else 'success')
+    return redirect(url_for('admin.requests'))
     
 @admin.route('/logout', subdomain='admin')
 def logout():
