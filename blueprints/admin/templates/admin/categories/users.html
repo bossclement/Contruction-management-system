@@ -1,0 +1,60 @@
+<div class="users">
+    <div class="content">
+        <h1>List of workers</h1>
+        <div class="container">
+            {% if users %}
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Registration Date</th>
+                            <th style="width: 100px;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                            <tr>
+                                <td class="ellipsis">{{ user.username }}</td>
+                                <td class="ellipsis">{{ user.email }}</td>
+                                <td class="ellipsis">{{ user.date }}</td>
+                                <td>
+                                    <div class="action-btns">
+                                        <a href="/users?action=delete&username={{ user.username }}" class="red table-btn">Delete</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <h2>No entries available</h2>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<style>
+    .users {
+        padding: 30px 35px;
+        display: flex;
+        flex-direction: column;
+    }
+    .users .content h1 {
+        color: var(--black-color);
+    }
+    .users .content .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 58vh;
+        margin-top: 30px;
+        background-color: var(--grey-color);
+        overflow: auto;
+    }
+    .users .content .container h2 {
+        color: var(--secondary-color);
+    }
+    
+</style>

@@ -242,6 +242,23 @@ def messages():
         category='messages',
         messages=res['messages']
     )
+
+@admin.route('/users', subdomain='admin')
+@login_required
+@subdomain_check_point
+def users():
+    if request.args:
+        action = request.args.get('action')
+        username = request.args.get('username')
+        if action == 'delete':
+            action_res = UserDao.delete(username=username)
+            flash(action_res['msg'], 'failed' if not action_res['status'] else 'success')
+    workers = UserDao.workers()
+    return render_template(
+        'admin/base.html',
+        category='users',
+        users=workers['workers']
+    )
     
 @admin.route('/logout', subdomain='admin')
 def logout():
