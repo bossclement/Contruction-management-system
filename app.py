@@ -5,6 +5,8 @@ from blueprints.client.client import client
 from blueprints.admin.admin import admin
 from blueprints.backend.database.dao.newsletterDao import NewsLetterDao
 from blueprints.backend.database.models.newsletter import NewsLetter
+from blueprints.backend.database.dao.messageDao import MessageDao
+from blueprints.backend.database.models.message import Message
 
 
 app = Flask(__name__)
@@ -37,6 +39,23 @@ def newletter():
         newsletter = NewsLetter(email=email)
         res = NewsLetterDao.create(newsletter=newsletter)
         flash(res['msg'], 'failed' if not res['status'] else 'success')
+    return redirect(request.referrer or url_for('home'))
+
+@app.route('/message', methods=["POST"])
+def message():
+    email = request.form.get('email')
+    name = request.form.get('name')
+    subject = request.form.get('subject')
+    message = request.form.get('message')
+
+    msg = Message(
+        message=message,
+        email=email,
+        subject=subject,
+        name=name
+    )
+    res = MessageDao.create(message=msg)
+    flash(res['msg'], 'failed' if not res['status'] else 'success')
     return redirect(request.referrer or url_for('home'))
 
 if __name__ == '__main__':
