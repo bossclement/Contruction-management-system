@@ -132,6 +132,16 @@ def delete(job_id):
     res = JobDao.delete(job_id=job_id)
     flash(res['msg'], 'failed' if not res['status'] else 'success')
     return redirect(url_for('admin.jobs'))
+
+@admin.route('/requests', subdomain='admin')
+@login_required
+def requests():
+    res = JobDao.all_requests()
+    return render_template(
+        'admin/base.html',
+        category='requests',
+        requests=res['requests']
+    )
     
 @admin.route('/logout', subdomain='admin')
 def logout():
