@@ -1,5 +1,5 @@
 # **Video Demo**
-[![Watch the video](https://youtu.be/QLT-AyDL5kM)]
+[Watch the video](https://youtu.be/QLT-AyDL5kM)
 
 
 Team members:
