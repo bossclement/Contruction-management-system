@@ -1,5 +1,5 @@
 # **Video Demo**
-<iframe width="560" height="315" src="https://www.youtube.com/embed/QLT-AyDL5kM" frameborder="0" allowfullscreen></iframe>
+[![Watch the video](https://img.youtube.com/vi/QLT-AyDL5kM/hqdefault.jpg)](https://youtu.be/QLT-AyDL5kM)
 
 
 Team members:
